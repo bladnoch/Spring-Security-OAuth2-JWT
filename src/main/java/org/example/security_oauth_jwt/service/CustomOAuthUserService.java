@@ -14,14 +14,18 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
 
     @Override
     public OAuth2User loadUser(OAuth2UserRequest userRequest) throws OAuth2AuthenticationException {
+        // 유저 값을 가져옴
         OAuth2User oAuth2User = super.loadUser(userRequest);
 
         System.out.println("CustomOAuthUserService.loadUser");
         System.out.println(oAuth2User);
 
+        // provider을 가져온다.
         String registrationId = userRequest.getClientRegistration().getRegistrationId();
 
+        // if문 이후 유저 정보를 받기 위한 빈 response 생성
         OAuth2Response oAuth2Response = null;
+
         if (registrationId.equals("naver")) {
 
             oAuth2Response = new NaverResponse(oAuth2User.getAttributes());
