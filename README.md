@@ -22,4 +22,9 @@
 * 구글 소셜 인증 설정
 * 리디렉션 : http://localhost:8080/login/oauth2/code/google
 * 강의 : https://www.youtube.com/watch?v=ed10nojCa9g&list=PLJkjrxxiBSFALedMwcqDw_BPaJ3qqbWeB&index=8
-* 
+
+
+### ch.9
+* naver, google을 받기위한 response 생성
+* OAuth2Response <-- GoogleResponse, NaverResponse
+* CustomOAuthUserService를 통해 response가 google인지 naver인지 구분해 값을 가져온다.
