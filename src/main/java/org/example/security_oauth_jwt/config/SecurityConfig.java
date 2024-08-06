@@ -1,5 +1,7 @@
 package org.example.security_oauth_jwt.config;
 
+import lombok.RequiredArgsConstructor;
+import org.example.security_oauth_jwt.service.CustomOAuthUserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
@@ -10,7 +12,10 @@ import org.springframework.security.web.SecurityFilterChain;
 
 @Configuration
 @EnableWebSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
+
+    private final CustomOAuthUserService customOAuthUserService;
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception{
@@ -30,7 +35,9 @@ public class SecurityConfig {
 
         //oauth2
         http
-                .oauth2Login(Customizer.withDefaults());
+                .oauth2Login((oauth2) -> oauth2
+                        .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
+                                .userService(customOAuthUserService)));
 
         //경로별 인가 작업
         http
