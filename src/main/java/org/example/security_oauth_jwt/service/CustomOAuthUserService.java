@@ -1,8 +1,6 @@
 package org.example.security_oauth_jwt.service;
 
-import org.example.security_oauth_jwt.dto.GoogleResponse;
-import org.example.security_oauth_jwt.dto.NaverResponse;
-import org.example.security_oauth_jwt.dto.OAuth2Response;
+import org.example.security_oauth_jwt.dto.*;
 import org.springframework.security.oauth2.client.userinfo.DefaultOAuth2UserService;
 import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
 import org.springframework.security.oauth2.core.OAuth2AuthenticationException;
@@ -39,6 +37,17 @@ public class CustomOAuthUserService extends DefaultOAuth2UserService {
         }
 
         // 추후 작성
+
+
+        String username = oAuth2Response.getProvider() + " " + oAuth2Response.getProviderId();
+
+
+        UserDTO userDTO = new UserDTO();
+        userDTO.setName(oAuth2Response.getName());
+        userDTO.setRole("ROLE_USER");
+        userDTO.setUsername(username);
+
+        return new CustomOAuth2User(userDTO);
 
     }
 }
