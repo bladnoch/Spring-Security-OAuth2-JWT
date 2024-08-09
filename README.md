@@ -28,3 +28,14 @@
 * naver, google을 받기위한 response 생성
 * OAuth2Response <-- GoogleResponse, NaverResponse
 * CustomOAuthUserService를 통해 response가 google인지 naver인지 구분해 값을 가져온다.
+
+### ch.13
+* +JWTUtil.java
+* client 전송을 위한 jwt를 쿠키에 담아 전송
+
+
+### ch.14
+* +JWTFilter.java 
+* filter chain에 요청에 담긴 jwt를ㄹ 검증하는 필터. 요청 쿠키에 jwt가 존재하는 경우 검증후 SecurityContextHolder에 세션을 생성한다.
+* refresh, access token의 구현과 email, social login에 대한 여러 방법을 물어보는 뎃글이 많음
+* 강의: https://www.youtube.com/watch?v=9g_iN6rLQcQ&list=PLJkjrxxiBSFALedMwcqDw_BPaJ3qqbWeB&index=14

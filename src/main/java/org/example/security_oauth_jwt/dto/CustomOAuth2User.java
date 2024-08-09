@@ -9,6 +9,7 @@ import java.util.Collection;
 import java.util.List;
 import java.util.Map;
 
+// UserDetails로 회원의 객체 생성
 @RequiredArgsConstructor
 public class CustomOAuth2User implements OAuth2User {
 
