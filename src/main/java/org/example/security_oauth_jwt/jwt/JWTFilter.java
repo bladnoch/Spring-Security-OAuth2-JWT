@@ -30,8 +30,9 @@ public class JWTFilter extends OncePerRequestFilter {
 
         // 받은 쿠키에 authorization이 있으면 가져오기
         for (Cookie cookie : cookies) {
+            System.out.println("JWTFilter.doFilterInternal");
             System.out.println("cookie.getName()");
-            if (cookie.getName().equals("authorization")) {
+            if (cookie.getName().equals("Authorization")) {
                 authorization = cookie.getValue();
             }
         }

@@ -1,7 +1,9 @@
 package org.example.security_oauth_jwt.jwt;
 
 
+import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -51,10 +53,12 @@ public class JWTUtil {
 
     // jwt 생성
     public String createJwt(String username, String role, Long expiredMs) {
+
         return Jwts.builder()
                 .claim("username", username)
                 .claim("role", role)
                 .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis()+expiredMs))
                 .signWith(secretKey)
                 .compact();
     }
