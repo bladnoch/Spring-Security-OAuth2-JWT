@@ -39,3 +39,7 @@
 * filter chain에 요청에 담긴 jwt를ㄹ 검증하는 필터. 요청 쿠키에 jwt가 존재하는 경우 검증후 SecurityContextHolder에 세션을 생성한다.
 * refresh, access token의 구현과 email, social login에 대한 여러 방법을 물어보는 뎃글이 많음
 * 강의: https://www.youtube.com/watch?v=9g_iN6rLQcQ&list=PLJkjrxxiBSFALedMwcqDw_BPaJ3qqbWeB&index=14
+
+### ch.15
+* cors 문제 해결
+* 프론트 백엔드의 포트가 다를 경우 json data가 보이지 않는 cors문제가 발생하기 떄문에 백에서 포트 설정을 해준다.
