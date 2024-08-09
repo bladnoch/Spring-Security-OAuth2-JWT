@@ -32,6 +32,7 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception{
 
+
         // cors 설정 ch.15
         http
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(new CorsConfigurationSource() {
@@ -75,7 +76,7 @@ public class SecurityConfig {
         http
                 .oauth2Login((oauth2) -> oauth2
                         .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
-                                .userService(customOAuthUserService)) // 커스텀한 oauth user servic
+                                .userService(customOAuthUserService)) // 커스텀한 oauth user service
                         .successHandler(customSuccessHandler)); // custom한 헨들러 등록 ch.13
 
         //경로별 인가 작업
