@@ -16,6 +16,9 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Iterator;
 
+// 로그인 성공시 핸들러 동작
+// 프론트 전달을 위한 쿠키 생성
+
 @Component
 @RequiredArgsConstructor
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
