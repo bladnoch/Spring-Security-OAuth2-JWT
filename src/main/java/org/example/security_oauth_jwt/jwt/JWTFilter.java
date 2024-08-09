@@ -10,6 +10,7 @@ import org.example.security_oauth_jwt.dto.CustomOAuth2User;
 import org.example.security_oauth_jwt.dto.UserDTO;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
@@ -72,5 +73,9 @@ public class JWTFilter extends OncePerRequestFilter {
         Authentication authToken = new UsernamePasswordAuthenticationToken(customOAuth2User, null, customOAuth2User.getAuthorities());
 
         // 세션에 사용자 등록
+        SecurityContextHolder.getContext().setAuthentication(authToken);
+
+        // 그 다음 필터 요청
+        filterChain.doFilter(request,response);
     }
 }

@@ -1,6 +1,7 @@
 package org.example.security_oauth_jwt.config;
 
 import lombok.RequiredArgsConstructor;
+import org.example.security_oauth_jwt.jwt.JWTFilter;
 import org.example.security_oauth_jwt.jwt.JWTUtil;
 import org.example.security_oauth_jwt.oauth2.CustomSuccessHandler;
 import org.example.security_oauth_jwt.service.CustomOAuthUserService;
@@ -10,6 +11,7 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 @Configuration
 @EnableWebSecurity
@@ -36,12 +38,16 @@ public class SecurityConfig {
         http
                 .httpBasic((auth) -> auth.disable());
 
+        // JWTFilter 추가 ch.14
+        http
+                .addFilterBefore(new JWTFilter(jwtUtil), UsernamePasswordAuthenticationFilter.class);
+
         //oauth2
         http
                 .oauth2Login((oauth2) -> oauth2
                         .userInfoEndpoint(userInfoEndpointConfig -> userInfoEndpointConfig
                                 .userService(customOAuthUserService)) // 커스텀한 oauth user servic
-                        .successHandler(customSuccessHandler)); // custom한 헨들러 등록
+                        .successHandler(customSuccessHandler)); // custom한 헨들러 등록 ch.13
 
         //경로별 인가 작업
         http
