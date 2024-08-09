@@ -20,6 +20,7 @@ public class SecurityConfig {
     private final CustomSuccessHandler customSuccessHandler;
     private final JWTUtil jwtUtil;
 
+
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws  Exception{
 

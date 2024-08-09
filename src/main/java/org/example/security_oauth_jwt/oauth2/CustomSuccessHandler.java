@@ -20,14 +20,19 @@ import java.util.Iterator;
 // 프론트 전달을 위한 쿠키 생성
 
 @Component
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class CustomSuccessHandler extends SimpleUrlAuthenticationSuccessHandler {
 
     private final JWTUtil jwtUtil;
 
-    // 13
+    public CustomSuccessHandler(JWTUtil jwtUtil) {
+        this.jwtUtil = jwtUtil;
+    }
+
+
+
     @Override
-    public void onAuthnticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
+    public void onAuthenticationSuccess(HttpServletRequest request, HttpServletResponse response, Authentication authentication) throws IOException, ServletException {
 
         // OAuth2User
         CustomOAuth2User customUserDetail = (CustomOAuth2User) authentication.getPrincipal();
